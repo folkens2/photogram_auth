@@ -7,6 +7,6 @@ class Photo < ApplicationRecord
   has_many :fans, :through => :likes, :source => :user
 
   # Validations
-  user_id: presence
+  validates :user_id, presence: true
 
 end

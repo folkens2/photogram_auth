@@ -5,7 +5,7 @@ class Like < ApplicationRecord
   belongs_to :photo
 
   # Validations
-  user_id: presence, uniqueness in combination with photo
-  photo_id: presence
+  validates :user_id, presence: true, uniqueness: true in combination with photo
+  validates :photo_id, presence: true
 
 end
