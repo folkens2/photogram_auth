@@ -5,25 +5,25 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Caption</dt>
-      <dd><%= @photo.caption %></dd>
+      <dt>Email</dt>
+      <dd><%= @user.email %></dd>
 
-      <dt>Image</dt>
-      <dd><%= @photo.image %></dd>
+      <dt>Username</dt>
+      <dd><%= @user.username %></dd>
 
-      <dt>User</dt>
-      <dd><%= @photo.user_id %></dd>
+      <dt>Photos</dt>
+      <dd><% @user.photos %></dd>
 
     </dl>
 
     <div class="btn-group btn-group-justified">
-      <a href="/photos" class="btn btn-primary">
+      <a href="/users" class="btn btn-primary">
         Back
       </a>
-      <a href="/photos/<%= @photo.id %>/edit" class="btn btn-warning">
+      <a href="/users/<%= @user.id %>/edit" class="btn btn-warning">
         Edit
       </a>
-      <a href="/delete_photo/<%= @photo.id %>" class="btn btn-danger" rel="nofollow">
+      <a href="/delete_user/<%= @user.id %>" class="btn btn-danger" rel="nofollow">
         Delete
       </a>
     </div>
