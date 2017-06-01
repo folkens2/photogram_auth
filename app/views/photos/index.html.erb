@@ -47,7 +47,21 @@
               <% end %>
             </form>
           </p>
-          
+
+          <% photo.comments.each do |comment|  %>
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-body">
+                <h6 class="media-heading">
+                  <a href="/users/<%= comment.user_id %>"><%= comment.user.username %></a>
+                  <small><%= time_ago_in_words(photo.created_at)%> ago</small>
+                </h6>
+                <%= comment.body %>
+              </div>
+            </li>
+          </ul>
+          <% end %>
+
           <li class="media">
             <div class="media-body">
               <form action="/create_comment" method="post">
