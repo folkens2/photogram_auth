@@ -32,17 +32,22 @@
               <input type="hidden" name="user_id" value="<%= photo.user_id %>">
 
               <button class="btn btn-link">
+                <% if photo.likes.count == 0 %>
                 <i class="fa fa-heart-o"></i>
+                <% else %>
+                <i class="fa fa-heart"></i>
+                <% end %>
               </button>
               <% if photo.likes.count == 0 %>
               <small class="text-muted">be the first to like this</small>
               <% else %>
               <% photo.likes.each do |like| %>
-              <small class="text-muted"><%= like.user.username %></small>
+              <small class="text-muted"><%= like.user.username %> likes this</small>
               <% end %>
               <% end %>
             </form>
           </p>
+          
           <li class="media">
             <div class="media-body">
               <form action="/create_comment" method="post">
