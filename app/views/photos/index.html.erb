@@ -41,7 +41,7 @@
               <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> likes this</small>
               <% else %>
               <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> like this</small>
-              <% end  %>
+              <% end %>
             </form>
 
             <% else %>
@@ -71,10 +71,8 @@
               <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> like this</small>
               <% end  %>
               <% end %>
-              <% end %>
-            </form>
 
-            <% end %>
+            </form>
 
           </p>
 
