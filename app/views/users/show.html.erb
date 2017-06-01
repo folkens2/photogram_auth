@@ -12,8 +12,10 @@
       <dd><%= @user.username %></dd>
 
       <dt>Photos</dt>
-      <dd><%= @user.photos %></dd>
-
+      <% @user.photos.each do |photo| %>
+      <dd><img src="<%= photo %>" width="50"></dd>
+      <dd><%= photo.caption %></dd>
+      <% end  %>
     </dl>
 
     <div class="btn-group btn-group-justified">
