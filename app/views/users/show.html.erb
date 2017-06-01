@@ -13,9 +13,8 @@
 
       <dt>Photos</dt>
       <% @user.photos.each do |photo| %>
-      <dd><img src="<%= photo %>" width="50"></dd>
+      <dd><img src="<%= photo.image %>" width="50"></dd>
       <dd><%= photo.caption %></dd>
-      <dd><%= photo.username %></dd>
       <% end  %>
     </dl>
 
