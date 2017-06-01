@@ -17,6 +17,11 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.username %></td>
+        <td>
+          <a href="/users/<%= photo.id %>" class="btn btn-primary">Show</a>
+          <a href="/users/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
       </tr>
       <% end %>
     </table>
