@@ -1,32 +1,82 @@
 <div class="page-header">
-  <h1>
-    Photos
-    <a href="/photos/new" class="btn btn-lg btn-success">New Photo</a>
-  </h1>
+  <a href="/photos/new" class="btn btn-lg btn-success">
+    <i class="fa fa-plus"></i>
+  </a>
 </div>
+
+<% @photos.each do |photo| %>
+
 
 <div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Caption</th>
-        <th>Image</th>
-        <th>User</th>
-        <th>Actions</th>
-      </tr>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><a href="/users/<%= photo.user_id %>"> <%= photo.user.username %> </a>
+          <small><%= time_ago_in_words(photo.created_at)%> ago </small>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <a href="/photos/<%= photo.id %>">
+          <img src="<%= photo.image %>" class="img-responsive">
+        </a>
 
-      <% @photos.each do |photo| %>
-      <tr>
-        <td><%= photo.caption %></td>
-        <td><img src="<%= photo.image %>" width="300"></td>
-        <td><%= photo.user_id %></td>
-        <td>
-          <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
-          <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+        <p>
+          <form action="/create_like" method="post">
+            <!-- Hidden input for authenticity token to protect from forgery -->
+            <input name="authenticity_token" type="hidden" value="1spKmsbbVkWby4jVNgHi334BC36GYjdcOPMGfZH5d+XnKYHxlSISOeN7tFuUD09aQMMTVJcuE8vY4vw4GrVcWQ==">
+
+            <input type="hidden" name="photo_id" value="<%= photo.id %>">
+
+            <input type="hidden" name="user_id" value="<%= photo.user_id %>">
+
+            <button class="btn btn-link">
+              <i class="fa fa-heart-o"></i>
+            </button>
+            <% if photo.likes.count == 0 %>
+            <small class="text-muted">be the first to like this</small>
+            <% else %>
+            <% photo.likes.each do |like| %>
+            <small class="text-muted"><%= like.user.username %></small>
+            <% end %>
+          </form>
+        </p>
+        <li class="media">
+          <div class="media-body">
+            <form action="/create_comment" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <input type="hidden" name="photo_id" value="<%=photo.id%>">
+
+              <input type="hidden" name="user_id" value="<%=current_user.id%>">
+
+              <!-- Label and input for body -->
+              <div class="form-group">
+                <label for="body" class="sr-only">
+                  Body
+                </label>
+
+                <div class="input-group">
+                  <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
+
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                      <i class="fa fa-commenting-o"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+              </div>
+            </form>
+          </div>
+        </li>
+      </ul>
+      <div class="btn-group btn-group-justified">
+        <a href="/photos" class="btn btn-primary">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
+<% end %>
+<% end %>
