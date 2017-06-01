@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   # READ
   get "/my_likes", :controller => "mylikes", :action => "index"
+
+  # CREATE
+  post "/create_mylike", :controller => "mylikes", :action => "create"
   #------------------------------
 
   # Routes for the Photo resource:
@@ -44,6 +47,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
   post "/create_comment", :controller => "comments", :action => "create"
+  post "/quick_create_comment", :controller => "comments", :action => "quickcreate"
 
   # READ
   get "/comments", :controller => "comments", :action => "index"
