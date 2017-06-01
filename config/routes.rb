@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   post "/create_photo", :controller => "photos", :action => "create"
 
   # READ
-  # get "/photos", :controller => "photos", :action => "index"
+  get "/photos", :controller => "photos", :action => "index"
   root to: "photos#index"
   get "/photos/:id", :controller => "photos", :action => "show"
 
