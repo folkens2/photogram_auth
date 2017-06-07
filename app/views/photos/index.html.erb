@@ -34,8 +34,7 @@
             <form action="/delete_like/<%= photo.likes.find_by(:user_id => current_user.id).id %>" method="get">
               <!-- Label and input for like -->
               <input type="hidden" id="like_id" name="like_id" value="<%= photo.likes.find_by(:user_id => current_user.id).id %>">
-              <button class="btn btn-link">
-                <i class="fa fa-heart"></i>
+              <button class="btn btn-link fa fa-heart">
               </button>
               <% if photo.fans.count == 1 %>
               <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> likes this</small>
@@ -60,8 +59,7 @@
                 <input type="hidden" name="user_id" class="form-control" value="<%= current_user.id %>">
               </div>
 
-              <button class="btn btn-link">
-                <i class="fa fa-heart-o"></i>
+              <button class="btn btn-link fa fa-heart-o">
               </button>
               <% if photo.likes.count == 0 %>
               <small class="text-muted">be the first to like this</small>
