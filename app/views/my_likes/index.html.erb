@@ -13,34 +13,34 @@
     </div>
   </div>
 
-  <% @mylikes.each do |photo| %>
+  <% @mylikes.each do |mylike| %>
 
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><a href="/users/<%= photo.user_id %>"> <%= photo.user.username %> </a>
-            <small><%= time_ago_in_words(photo.created_at)%> ago </small>
+          <h3 class="panel-title"><a href="/users/<%= mylike.photo.user_id %>"> <%= mylike.photo.user.username %> </a>
+            <small><%= time_ago_in_words(mylike.photo.created_at)%> ago </small>
           </h3>
         </div>
         <div class="panel-body">
-          <a href="/photos/<%= photo.id %>">
-            <img src="<%= photo.image %>" class="img-responsive">
+          <a href="/photos/<%= mylike.photo.id %>">
+            <img src="<%= mylike.photo.image %>" class="img-responsive">
           </a>
 
           <p>
-            <% if current_user.liked_photos.ids.include? photo.id %>
-            <form action="/delete_like/<%= photo.likes.find_by(:user_id => current_user.id).id %>" method="get">
+            <% if current_user.liked_photos.ids.include? mylike.photo.id %>
+            <form action="/delete_like/<%= mylike.photo.likes.find_by(:user_id => current_user.id).id %>" method="get">
               <!-- Label and input for like -->
-              <input type="hidden" id="like_id" name="like_id" value="<%= photo.likes.find_by(:user_id => current_user.id).id %>">
+              <input type="hidden" id="like_id" name="like_id" value="<%= mylike.photo.likes.find_by(:user_id => current_user.id).id %>">
               <button class="btn btn-link">
                 <i class="fa fa-heart"></i>
               </button>
-              <% if photo.fans.count == 1 %>
-              <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> likes this</small>
+              <% if mylike.photo.fans.count == 1 %>
+              <small class="text-muted"><%= mylike.photo.fans.pluck(:username).to_sentence %> likes this</small>
               <% else %>
-              <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> like this</small>
+              <small class="text-muted"><%= mylike.photo.fans.pluck(:username).to_sentence %> like this</small>
               <% end %>
             </form>
 
@@ -63,12 +63,12 @@
               <button class="btn btn-link">
                 <i class="fa fa-heart-o"></i>
               </button>
-              <% if photo.likes.count == 0 %>
+              <% if mylike.photo.likes.count == 0 %>
               <small class="text-muted">be the first to like this</small>
-              <% elsif photo.fans.count == 1 %>
-              <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> likes this</small>
+              <% elsif mylike.photo.fans.count == 1 %>
+              <small class="text-muted"><%= mylike.photo.fans.pluck(:username).to_sentence %> likes this</small>
               <% else %>
-              <small class="text-muted"><%= photo.fans.pluck(:username).to_sentence %> like this</small>
+              <small class="text-muted"><%= mylike.photo.fans.pluck(:username).to_sentence %> like this</small>
               <% end  %>
               <% end %>
 
@@ -77,7 +77,7 @@
           </p>
 
 
-          <% photo.comments.each do |comment|  %>
+          <% mylike.photo.comments.each do |comment|  %>
           <ul class="media-list">
             <li class="media">
               <div class="media-body">
@@ -97,7 +97,7 @@
                 <!-- Hidden input for authenticity token to protect from forgery -->
                 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-                <input type="hidden" id="photo_id" name="photo_id" value="<%=photo.id%>">
+                <input type="hidden" id="photo_id" name="photo_id" value="<%=mylike.photo.id%>">
 
                 <input type="hidden" id="user_id" name="user_id" value="<%=current_user.id%>">
 
@@ -125,11 +125,11 @@
           <a href="/photos" class="btn btn-primary">
             <i class="fa fa-chevron-left"></i>
           </a>
-          <% if photo.user_id == current_user.id %>
-          <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">
+          <% if mylike.photo.user_id == current_user.id %>
+          <a href="/photos/<%= mylike.photo.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
-          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger">
+          <a href="/delete_photo/<%= mylike.photo.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
           <% else %>

@@ -3,7 +3,7 @@ class MylikesController < ApplicationController
     @likes = Like.all
     @mylikes = @likes.where(:user_id => current_user.id)
 
-    render("likes/index.html.erb")
+    render("my_likes/index.html.erb")
   end
 
   def create
