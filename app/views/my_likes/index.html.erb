@@ -76,6 +76,21 @@
 
           </p>
 
+          <!-- Caption -->
+
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-body">
+                <h6 class="media-heading">
+                  <a href="/users/<%= mylike.photo.user_id %>"><%= mylike.photo.user.username %></a>
+                  <small><%= time_ago_in_words(mylike.photo.created_at)%> ago</small>
+                </h6>
+                <%= mylike.photo.caption %>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Comments -->
 
           <% mylike.photo.comments.each do |comment|  %>
           <ul class="media-list">

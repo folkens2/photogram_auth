@@ -76,8 +76,23 @@
 
           </p>
 
-          <% photo.comments.each do |comment|  %>
+        <!-- Caption -->
 
+          <ul class="media-list">
+            <li class="media">
+              <div class="media-body">
+                <h6 class="media-heading">
+                  <a href="/users/<%= photo.user_id %>"><%= photo.user.username %></a>
+                  <small><%= time_ago_in_words(photo.created_at)%> ago</small>
+                </h6>
+                <%= photo.caption %>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Comments -->
+
+          <% photo.comments.each do |comment|  %>
           <ul class="media-list">
             <li class="media">
               <div class="media-body">
